@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>coding challenge</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <script type="text/paperscript" canvas="myCanvas">
+
+
+<!-- Creating a New Shape  --> 
+<!-- New Point to create a rectangle (width, height) --> 
+var rectangle = new Rectangle(new Point(70, 50), new Point(180, 100));
+
+var path = new Path.Rectangle(rectangle);
+
+<!-- passing along the point variable inside the position creates a random postion -->
+path.position = new Point(point)
+<!-- the new path is a constructor that adds segments to it using the path.add(segment) -->
+path.fillColor = 'black';
+path.selected = true;
+<!-- path.selected makes the shape active just like the button active class in bootstrap  -->
+
+var maxPoint = new Point(view.size.width, view.size.height)
+var randomPoint = Point.random()
+var point = maxPoint * randomPoint
+
+
+
+<!-- function that changes the color of the rectangle to a certain color depending on which key is pressed -->
+function onFrame(event){
+	if(Key.isDown('o')){
+		path.fillColor = 'orange'
+	}
+
+	if(Key.isDown('r')){
+		path.fillColor = 'red'
+	}
+
+	if(Key.isDown('g')){
+		path.fillColor = 'green'
+	}
+
+	if(Key.isDown('b')){
+		path.fillColor = 'blue'
+	}
+
+	if(Key.isDown('p')){
+		path.fillColor = 'purple'
+	}
+
+	if(Key.isDown('y')){
+		path.fillColor = 'yellow'
+	}
+
+	if(Key.isDown('w')){
+		path.fillColor = 'white'
+	}
+
+	
+	<!-- will rotate the rectangle clockwise. The 3 indicates the speed at which it will rotate. -->
+	if(Key.isDown('right')){
+		path.rotate('3')
+	}
+	<!-- will rotate the rectangle counterclockwise. The -3 is needed so it rotates in the opposite direction -->
+	if(Key.isDown('left')){
+		path.rotate('-3')
+	}
+	<!-- scales the size to increase inside the canvas -->
+	if(Key.isDown('up')){
+		path.scale('1.1')
+	}
+	<!-- scales the size to decrease inside the canvas -->
+	if(Key.isDown('down')){
+		path.scale('0.9')
+	}
+
+	<!-- dragging The Rectangle -->
+	path.onMouseDrag = function(event) {
+    path.position += event.delta;
+	}
+
+	<!-- deleting the rectangle by double clicking-->
+	path.onDoubleClick = function(event){
+	this.remove();
+	}
+
+
+<!-- Make a copy and set its stroke color to red: by clicking c on the keyboard-->
+	
+	if(Key.isDown('c')){
+
+	for (var i = 0; i < 1; i++) {
+
+
+	var pathCopy = new Path.Rectangle(rectangle);
+	}
+	<!-- passing along the point variable inside the position creates a random postion -->
+	pathCopy.position = new Point(point)
+	<!-- the new path is a constructor that adds segments to it using the path.add(segment) -->
+	pathCopy.fillColor = 'red';
+	pathCopy.selected = true;
+
+
+	pathCopy.onClick = function(event){
+
+	pathCopy.onMouseDrag = function(event) {
+    pathCopy.position += event.delta;
+
+    pathCopy.onDoubleClick = function(event){
+	this.remove();
+
+	}
+	
+	<!-- array and variable to select random colors when dragging the copy -->
+	var myColors = ['green', 'white', 'purple', 'red', 'orange', 'black'];
+
+	var color = myColors[Math.floor(Math.random() * myColors.length)];
+	
+	this.fillColor = color;
+	<!-- rotates the copy while dragging -->
+	pathCopy.rotate(45);
+
+	}
+	
+	}
+
+	} <!-- - keyDown(c) event -->
+}<!-- - onFrame event -->
+
+ 
+
+  </script>
+</head>
+<body>
+
+<div class="content">
+	<h2>How To Play</h2>
+
+	<ul>
+	
+	<li><p>You can drag a rectangle by holding down the mouse button.</p></li>
+
+	<li><p>The up and down arrow keys can be used to scale the first rectangle. The left and right keys can be used to make it rotate.</p></li>
+
+	<li><p>If you feel like changing the color of the rectangle, you can do so by clicking various keys. Such as:  <strong> 'o' - for orange, 'r' - for red, 'g' - for green, 'b' - for blue, 'p' - for purple, 'y' - for yellow, and 'w' for white.</strong></p></li>
+
+	<li><p>You can press the 'c' key to create a new a new rectangle. You can drag the copy as much as you like by clicking on it once and the copy will spin in a 45 degrees angle clockwise every time you drag it. Also just in time for halloween; while your rectangle is spinning, you get halloween colors that land on a random color once you stop dragging it.</p></li>
+
+	<li><p>Every time you need a new copy, click on the red rectangle once and drag one out of it. When you run out of rectangles, click on the 'c' key again to generate more rectangles. </p></li>
+
+	<li><p>In order to delete a rectangle, you can double click on it.</p></li>
+
+	<li><p>Lastly, have fun and updates will be coming very soon.!</p></li>
+
+	</ul>
+</div>
+
+
+	
+	
+
+<canvas id="myCanvas" width="800" height="500" resize></canvas>
+
+
+
+<script type="text/javascript" src="paper-full.js"></script>
+</body>
+</html>
+
+
